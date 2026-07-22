@@ -9,6 +9,8 @@
 </head>
 
 <body>
+
+
 	<div class="container">
 		<main>
 			<header>
@@ -32,14 +34,11 @@
 				<div class="dialogContainer">
 					<div class="icon"></div>
 					<div class="dialog">
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor harum hic temporibus
-							quisquam obcaecati sit distinctio</p>
+						<p></p>
 					</div>
 				</div>
 
 				<div class="contentContainer">
-
-
 
 
 				</div>
@@ -63,8 +62,8 @@
 
 	<script type="module">
 
-		import { widgetRegistry } from "../../src/js/utils/widgetRegistry .js"
-
+		import { widgetRegistry } from "../../src/js/utils/widgetRegistry.js"
+		import { renderPopupDone } from "../../src/js/render/components/PopupDone.js"
 		let json = [
 			{
 				id: 1,
@@ -79,94 +78,153 @@
 			{
 				id: 3,
 				type: "learnKombinasi",
-				text: "Contohnya, nombor 5 boleh dipecahkan kepada 3 dan 2.",
+				text: "Contohnya, nombor 6 boleh dipecahkan kepada 1 dan 5.",
 				content: {
-					whole: 5,
-					part: [3, 2],
+					whole: 6,
+					part: [1, 5],
+				}
+			},
+			{
+				id: 6,
+				type: "learnKombinasi",
+				text: "Nombor 6 juga boleh dipecahkan kepada 2 dan 4",
+				content: {
+					whole: 6,
+					part: [2, 4],
+				}
+			},
+			{
+				id: 6,
+				type: "learnKombinasi",
+				text: "Nombor 6 juga boleh dipecahkan kepada 3 dan 3",
+				content: {
+					whole: 6,
+					part: [3, 3],
 				}
 			},
 			{
 				id: 4,
 				type: "learnKombinasiTerbalik",
-				text: "Apabila kita gabungkan 3 dan 2, kita akan dapat 5 semula",
+				text: "Apabila kita gabungkan 1 dan 5, kita akan dapat 6 semula",
 				content: {
-					whole: 5,
-					part:[3,2],
+					whole: 6,
+					part: [1, 5],
 				}
 			},
 			{
-				id: 6,
-				type: "diagram",
-				text: "Nombor 5 juga boleh dipecahkan kepada 1 dan 4",
+				id: 4,
+				type: "learnKombinasiTerbalik",
+				text: "Apabila kita gabungkan 2 dan 4, kita akan dapat 6 semula",
 				content: {
-					whole: 5,
-					part: [3, 2],
+					whole: 6,
+					part: [2, 4],
+				}
+			},
+			{
+				id: 4,
+				type: "learnKombinasiTerbalik",
+				text: "Apabila kita gabungkan 3 dan 3, kita akan dapat 6 semula",
+				content: {
+					whole: 6,
+					part: [3, 3],
 				}
 			},
 			{
 				id: 7,
 				type: "list",
-				text: "Satu nombor boleh mempunyai banyak pasangan Number Bonds",
+				text: "Kesimpulannya, Satu nombor boleh mempunyai banyak kombinasi Number Bonds",
 				content: {
 					items: [
-						"0 + 5 = 5",
-						"1 + 4 = 5",
-						"2 + 3 = 5",
-						"3 + 2 = 5",
-						"4 + 1 = 5",
-						"5 + 0 = 5"
+						"0 + 6 = 6",
+						"1 + 5 = 6",
+						"2 + 4 = 6",
+						"3 + 3 = 6",
+						"4 + 2 = 6",
+						"5 + 1 = 6",
+						"6 + 0 = 6",
 					]
 				}
 			},
 		]
 
-		let nextBtn = document.querySelector(".btnNext");
-		let backBtn = document.querySelector(".btnBack");
-		let index = 0
-		let lenghtDialog = json.length
-		let barFill = document.querySelector(".barFill")
+		let ui = {
+			nextBtn: document.querySelector(".btnNext"),
+			backBtn: document.querySelector(".btnBack"),
+			barFill: document.querySelector(".barFill"),
+		}
+		let state = {
+			index: 0,
+			lenghtDialog: json.length,
+			question: null,
+			currentData: null
+		}
 		// let clickSound = new Audio("../../sounds/click.wav");
-		let question
-		let currentData
+		// clickSound.play();
+		// speak(data.text)
 
-		nextBtn.addEventListener("click", () => addDialog())
+		ui.nextBtn.addEventListener("click", () => addDialog(1))
+		ui.backBtn.addEventListener("click", () => addDialog(-1))
 
-		function addDialog(data = json[index++]) {
-			if (index >= lenghtDialog + 1) {
-				PopUpDone()
-				return
+		function addDialog(idx) {
+
+			state.index += idx
+
+			if (state.index < 0) {
+				state.index = 0;
+				return;
+			}
+			if (state.index >= state.lenghtDialog) {
+				state.index = state.lenghtDialog - 1;
+
+				if (!document.querySelector(".containerPopUp")) {
+
+					
+					let div = document.createElement("div")
+					div.classList.add("containerPopUp")
+					div.innerHTML = renderPopupDone()
+					document.querySelector(".container").appendChild(div)
+
+					document.querySelector(".btnExit").addEventListener("click", () => {
+						window.location.href = "./index.html";
+					});
+				}
+
+				return;
 			}
 
-			// clickSound.play();
+			let data = json[state.index]
+			console.log({ data });
 
-			// speak(data.text)
-			barFill.style.width = `${(index / lenghtDialog) * 100}%`
+			ui.barFill.style.width = `${(state.index / state.lenghtDialog) * 100}%`
 
-			currentData = data
-			
-			if(currentData.type != "text"){
+			state.currentData = data
+
+			if (state.currentData.type != "text") {
 				let contentContainer = document.querySelector(".contentContainer")
 				contentContainer.innerHTML = ""
-	
+
 				const dialog = document.createElement("div");
 				dialog.className = "output";
-	
-	
-				question = widgetRegistry[currentData.type];
-	
-				dialog.innerHTML = question.render(data);
-				
-				contentContainer.appendChild(dialog);
-	
-				document.querySelector(".dialog p").textContent = currentData.text
-				
-				question?.setup();
-			}else{
-				document.querySelector(".dialog p").textContent = currentData.text
+
+				state.question = widgetRegistry[state.currentData.type];
+
+				if (state.question) {
+					dialog.innerHTML = state.question.render(data);
+					contentContainer.appendChild(dialog);
+					state.question?.setup();
+				}
+
+				document.querySelector(".dialog p").textContent = state.currentData.text
+
+			} else {
+				let contentContainer = document.querySelector(".contentContainer");
+				contentContainer.innerHTML = "";
+
+				document.querySelector(".dialog p").textContent = state.currentData.text
 			}
 
 		}
-		addDialog()
+		// addDialog(0)
 	</script>
 
 </body>

@@ -7,6 +7,9 @@ import { updateText } from "../logic/text.js"
 import { setupClickBtn } from "../logic/neededLogic.js"
 import { renderLearnKombinasi } from "../render/Learn/Kombinasi.js"
 import { renderLearnKombinasiTerbalik } from "../render/Learn/KombinasiTerbalik.js"
+import { renderLearnList } from "../render/Learn/List.js"
+import { renderPopupDone } from "../render/components/PopupDone.js"
+
 export let widgetRegistry = {
 
 	text: {
@@ -20,6 +23,14 @@ export let widgetRegistry = {
 	learnKombinasiTerbalik: {
 		render: renderLearnKombinasiTerbalik,
 		setup: () => { }
+	},
+	list: {
+		render: renderLearnList,
+		setup: () => { }
+	},
+	popUpDone:{
+		render:renderPopupDone,
+		
 	}
 	// pick: {
 	// 	render: renderPick,
