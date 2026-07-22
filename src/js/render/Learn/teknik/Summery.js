@@ -1,4 +1,4 @@
-export function renderSummery(data){
+export function renderLearnSummery(data){
 	return `
 		<div class="content grid-5">
 			<h1 class="text-center">7</h1>

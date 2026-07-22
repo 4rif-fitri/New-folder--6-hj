@@ -1,4 +1,4 @@
-export function renderSum(data){
+export function renderLearnSum(data){
 	return `
 		<div class="content grid-5">
 			<h1 class="eqn text-center redLine">7</h1>

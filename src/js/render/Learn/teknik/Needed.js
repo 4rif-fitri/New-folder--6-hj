@@ -1,4 +1,4 @@
-export function renderNeeded(data){
+export function renderLearnNeeded(data){
 	return `
 		<div class="content grid-5">
 			<h1 class="eqn text-center">7</h1>

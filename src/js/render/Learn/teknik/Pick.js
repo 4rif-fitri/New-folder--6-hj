@@ -1,4 +1,4 @@
-export function renderPick(data){
+export function renderLearnPick(data){
 	return `
 		<div class="content grid-3">
 			<h1 class="eqn text-center">7</h1>

@@ -1,4 +1,4 @@
-export function renderBaki(data){
+export function renderLearnBaki(data){
 	return `
 		<div class="content grid-5">
 			<h1 class="eqn text-center">7</h1>

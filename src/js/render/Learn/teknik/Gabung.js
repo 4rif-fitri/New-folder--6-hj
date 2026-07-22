@@ -1,4 +1,4 @@
-export function renderGabung(data){
+export function renderLearnGabung(data){
 	return `
 		<div class="content grid-4">
 			<h1 class="eqn text-center redLine">7</h1>
