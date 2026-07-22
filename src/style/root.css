@@ -490,3 +490,50 @@ a {
 	transform: translateY(5px);
 	box-shadow: 0 1px 0 #c8ccd2;
 }
+
+.grid-2 {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.grid-3 {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.grid-4 {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr) !important;
+}
+
+.grid-5 {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr) !important;
+}
+
+.grid-6 {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr) !important;
+}
+
+.mt-1 {
+	margin-top: 0.5rem;
+}
+
+.mt-2 {
+	margin-top: 1rem;
+}
+
+.eqn {
+	border-radius: 5px;
+	border: 2px solid black;
+	aspect-ratio: 1 / 1;
+}
+
+.gap-1 {
+	gap: 0.5rem;
+}
+
+.gap-2 {
+	gap: 1rem;
+}
