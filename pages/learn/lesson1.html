@@ -151,6 +151,7 @@
 			nextBtn: document.querySelector(".btnNext"),
 			backBtn: document.querySelector(".btnBack"),
 			barFill: document.querySelector(".barFill"),
+			textBar: document.querySelector(".text-bar")
 		}
 		let state = {
 			index: 0,
@@ -173,11 +174,13 @@
 				state.index = 0;
 				return;
 			}
+			ui.barFill.style.width = `${(state.index / state.lenghtDialog) * 100}%`
+			ui.textBar.textContent = `${state.index+1}/${state.lenghtDialog+1} Slide`
+
 			if (state.index >= state.lenghtDialog) {
 				state.index = state.lenghtDialog - 1;
 
 				if (!document.querySelector(".containerPopUp")) {
-
 					
 					let div = document.createElement("div")
 					div.classList.add("containerPopUp")
@@ -195,7 +198,6 @@
 			let data = json[state.index]
 			console.log({ data });
 
-			ui.barFill.style.width = `${(state.index / state.lenghtDialog) * 100}%`
 
 			state.currentData = data
 
@@ -224,7 +226,7 @@
 			}
 
 		}
-		// addDialog(0)
+		addDialog(0)
 	</script>
 
 </body>
