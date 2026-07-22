@@ -46,21 +46,129 @@
 
 			</section>
 
-			<footer class="betul">
+			<footer>
 				<div class="textContainer textBetul">
-					<h2 class="">BETUL</h2>
-					<p class="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, quaerat</p>
+					<h2 class="hidden">BETUL</h2>
+					<p class="hidden">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, quaerat</p>
 				</div>
-				<!-- <div class="btnContainer grid-2"> -->
-				<div class="btnContainer">
-					<button class="btnContinue soft-box hidden">CONTINUE</button>
-					<button class="btnCheck soft-box ">CHECK</button>
-					<button class="btnBack soft-box hidden">BACK</button>
-					<button class="btnNext soft-box hidden">NEXT</button>
+				<div class="btnContainer grid-2">
+					<!-- <button class="btnContinue soft-box hidden">CONTINUE</button> -->
+					<!-- <button class="btnCheck soft-box ">CHECK</button> -->
+					<button class="btnBack soft-box">BACK</button>
+					<button class="btnNext soft-box">NEXT</button>
 				</div>
 			</footer>
 		</main>
 	</div>
+
+	<script type="module">
+
+		import { widgetRegistry } from "../../src/js/utils/widgetRegistry .js"
+
+		let json = [
+			{
+				id: 1,
+				type: "text",
+				text: "Mari belajar Number Bonds!"
+			},
+			{
+				id: 2,
+				type: "text",
+				text: "Number Bonds ialah cara memecahkan satu nombor kepada dua bahagian"
+			},
+			{
+				id: 3,
+				type: "learnKombinasi",
+				text: "Contohnya, nombor 5 boleh dipecahkan kepada 3 dan 2.",
+				content: {
+					whole: 5,
+					part: [3, 2],
+				}
+			},
+			{
+				id: 4,
+				type: "diagram_terbalik",
+				text: "Apabila kita gabungkan 3 dan 2, kita akan dapat 5 semula",
+				content: {
+					whole: 5,
+					part:[3,2],
+				}
+			},
+			{
+				id: 6,
+				type: "diagram",
+				text: "Nombor 5 juga boleh dipecahkan kepada 1 dan 4",
+				content: {
+					whole: 5,
+					part: [3, 2],
+				}
+			},
+			{
+				id: 7,
+				type: "list",
+				text: "Satu nombor boleh mempunyai banyak pasangan Number Bonds",
+				content: {
+					items: [
+						"0 + 5 = 5",
+						"1 + 4 = 5",
+						"2 + 3 = 5",
+						"3 + 2 = 5",
+						"4 + 1 = 5",
+						"5 + 0 = 5"
+					]
+				}
+			},
+		]
+
+		let nextBtn = document.querySelector(".btnNext");
+		let backBtn = document.querySelector(".btnBack");
+		let index = 0
+		let lenghtDialog = json.length
+		let barFill = document.querySelector(".barFill")
+		// let clickSound = new Audio("../../sounds/click.wav");
+		let question
+		let currentData
+
+		nextBtn.addEventListener("click", () => addDialog())
+
+		function addDialog(data = json[index++]) {
+			if (index >= lenghtDialog + 1) {
+				PopUpDone()
+				return
+			}
+
+			// clickSound.play();
+
+			// speak(data.text)
+			barFill.style.width = `${(index / lenghtDialog) * 100}%`
+
+			currentData = data
+			
+			if(currentData.type != "text"){
+				let contentContainer = document.querySelector(".contentContainer")
+				contentContainer.innerHTML = ""
+	
+				const dialog = document.createElement("div");
+				dialog.className = "output";
+	
+	
+				question = widgetRegistry[currentData.type];
+	
+				dialog.innerHTML = question.render(data);
+				
+				contentContainer.appendChild(dialog);
+	
+				document.querySelector(".dialog p").textContent = currentData.text
+				
+				question?.setup();
+			}else{
+				document.querySelector(".dialog p").textContent = currentData.text
+			}
+
+		}
+		addDialog()
+	</script>
+
 </body>
 
 </html>
