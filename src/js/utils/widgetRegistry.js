@@ -11,6 +11,14 @@ import { renderLearnList } from "../render/Learn/List.js"
 import { renderLearnSquareBoxDiagram } from "../render/Learn/SquareBoxDiagram.js"
 import { renderPopupDone } from "../render/components/PopupDone.js"
 
+import { renderLearnPick } from "../render/Learn/teknik/Pick.js"
+import { renderLearnGabung } from "../render/Learn/teknik/Gabung.js"
+import { renderLearnPecah } from "../render/Learn/teknik/Pecah.js"
+import { renderLearnBaki } from "../render/Learn/teknik/Baki.js"
+import { renderLearnNeeded } from "../render/Learn/teknik/Needed.js"
+import { renderLearnSum } from "../render/Learn/teknik/Sum.js"
+import { renderLearnSummery } from "../render/Learn/teknik/Summery.js"
+
 export let widgetRegistry = {
 
 	text: {
@@ -33,9 +41,28 @@ export let widgetRegistry = {
 		render: renderLearnSquareBoxDiagram,
 		setup: () => { }
 	},
-	popUpDone:{
-		render:renderPopupDone,
-	}
+	LearnPick:{
+		render: renderLearnPick,
+	},
+	LearnNeeded: {
+		render: renderLearnNeeded,
+	},
+	LearnPecah: {
+		render: renderLearnPecah,
+	},
+	LearnBaki: {
+		render: renderLearnBaki,
+	},
+	LearnGabung: {
+		render: renderLearnGabung,
+	},
+	LearnSum: {
+		render: renderLearnSum,
+	},
+	LearnSummery: {
+		render: renderLearnSummery,
+	},
+	
 	// pick: {
 	// 	render: renderPick,
 	// 	setup: setupPick,

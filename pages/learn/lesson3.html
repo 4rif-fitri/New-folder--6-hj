@@ -100,76 +100,72 @@
 				{
 					text: "Pilih nombor paling besar",
 					type: "LearnPick",
-					options: [a, b],
 					content: {
-						options: [a, b],
-						pelengkap
+						nums: [besar, kecil],
+						pelengkap,
+						baki,
+						jumlah
 					},
-					answer: besar
 				},
 				{
-					text: `${besar} perlukan berapa untuk jadi 10`,
+					text: `${besar} perlukan ${pelengkap} untuk jadi 10`,
 					type: "LearnNeeded",
-					options: [pelengkap, pelengkap + 1, kecil],
 					content: {
-						options: [a, b],
-						pelengkap
+						nums: [besar, kecil],
+						pelengkap,
+						baki,
+						jumlah
 					},
-					answer: pelengkap
 				},
 				{
 					text: `${pelengkap} itu kita akan ambil dari ${kecil}`,
 					type: "LearnPecah",
-					options: [a, b, besar],
 					content: {
-						options: [besar, ""],
-						pelengkap
+						nums: [besar, kecil],
+						pelengkap,
+						baki,
+						jumlah
 					},
-					answer: kecil
 				},
 				{
 					text: `${kecil} akan dipecahkan kepada ${pelengkap} dan ${kecil - pelengkap}`,
 					type: "LearnBaki",
-					options: [baki, pelengkap, kecil],
 					content: {
-						options: [a, b],
+						nums: [besar, kecil],
 						pelengkap,
-						baki
+						baki,
+						jumlah
 					},
-					answer: baki
 				},
 				{
 					text: `${besar} tambah ${pelengkap} akan dapat 10`,
 					type: "LearnGabung",
-					options: [10, 11, 12],
 					content: {
-						options: [a, b],
+						nums: [besar, kecil],
 						pelengkap,
-						baki
+						baki,
+						jumlah
 					},
-					answer: 10
 				},
 				{
 					text: `10 tambah ${baki} akan dapat `,
 					type: "LearnSum",
-					options: [jumlah, jumlah - 1, jumlah + 1],
 					content: {
-						options: [a, b],
+						nums: [besar, kecil],
 						pelengkap,
-						baki
+						baki,
+						jumlah
 					},
-					answer: jumlah
 				},
 				{
 					text: `${besar} tambah ${kecil} akan dapat ${jumlah}`,
 					type: "LearnSummery",
-					options: [jumlah, jumlah - 1, jumlah + 1],
 					content: {
-						options: [a, b],
+						nums: [besar, kecil],
 						pelengkap,
-						baki
+						baki,
+						jumlah
 					},
-					answer: jumlah
 				}
 			];
 		}
@@ -227,9 +223,9 @@
 			ui.dialogText.textContent = data.text;
 			ui.contentContainer.innerHTML = "";
 
-			ui.textBar.textContent =`${state.stepIndex + 1}/${json.length} Slide`;
+			ui.textBar.textContent = `${state.stepIndex + 1}/${json.length} Slide`;
 
-			ui.barFill.style.width =`${((state.stepIndex + 1) / json.length) * 100}%`;
+			ui.barFill.style.width = `${((state.stepIndex + 1) / json.length) * 100}%`;
 
 			state.question = widgetRegistry[data.type];
 
@@ -252,11 +248,6 @@
 			output.innerHTML = state.question.render(data);
 
 			ui.contentContainer.appendChild(output);
-
-			state.question.setup?.(
-				value => console.log("Dipilih:", value),
-				() => true
-			);
 
 			updateButtons();
 		}
@@ -302,9 +293,7 @@
 				state.stepIndex === json.length - 1;
 
 			ui.btnBack.disabled = firstSlide;
-			ui.btnNext.textContent = lastSlide
-				? "FINISH"
-				: "NEXT";
+			ui.btnNext.textContent = lastSlide ? "FINISH" : "NEXT";
 		}
 
 		ui.btnNext.addEventListener("click", nextStep);
