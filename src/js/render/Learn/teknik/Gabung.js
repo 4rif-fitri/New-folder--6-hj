@@ -1,7 +1,7 @@
 export function renderLearnGabung(data){
 	return `
 		<div class="content grid-4">
-			<h1 class="eqn text-center redLine">${data.content.nums[0]}</h1>
+			<h1 class="eqn text-center redLine yellow">${data.content.nums[0]}</h1>
 			<h1 class="text-center">+</h1>
 			<h1 class="eqn text-center garisPecah2">${data.content.nums[1]}</h1>
 			<h1></h1>
