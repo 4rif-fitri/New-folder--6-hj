@@ -63,7 +63,7 @@
 	<script type="module">
 
 		import { widgetRegistry } from "../../src/js/utils/widgetRegistry.js"
-		import { renderPopupDone } from "../../src/js/render/components/PopupDone.js"
+		import { showPopUpDone } from "../../src/js/utils/helper.js"
 		let json = [
 			{
 				id: 1,
@@ -178,26 +178,11 @@
 			ui.textBar.textContent = `${state.index+1}/${state.lenghtDialog+1} Slide`
 
 			if (state.index >= state.lenghtDialog) {
-				state.index = state.lenghtDialog - 1;
-
-				if (!document.querySelector(".containerPopUp")) {
-					
-					let div = document.createElement("div")
-					div.classList.add("containerPopUp")
-					div.innerHTML = renderPopupDone()
-					document.querySelector(".container").appendChild(div)
-
-					document.querySelector(".btnExit").addEventListener("click", () => {
-						window.location.href = "./index.html";
-					});
-				}
-
+				showPopUpDone()
 				return;
 			}
 
 			let data = json[state.index]
-			console.log({ data });
-
 
 			state.currentData = data
 
@@ -221,7 +206,6 @@
 			} else {
 				let contentContainer = document.querySelector(".contentContainer");
 				contentContainer.innerHTML = "";
-
 				document.querySelector(".dialog p").textContent = state.currentData.text
 			}
 

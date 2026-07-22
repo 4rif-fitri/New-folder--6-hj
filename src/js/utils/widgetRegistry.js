@@ -8,6 +8,7 @@ import { setupClickBtn } from "../logic/neededLogic.js"
 import { renderLearnKombinasi } from "../render/Learn/Kombinasi.js"
 import { renderLearnKombinasiTerbalik } from "../render/Learn/KombinasiTerbalik.js"
 import { renderLearnList } from "../render/Learn/List.js"
+import { renderLearnSquareBoxDiagram } from "../render/Learn/SquareBoxDiagram.js"
 import { renderPopupDone } from "../render/components/PopupDone.js"
 
 export let widgetRegistry = {
@@ -28,9 +29,12 @@ export let widgetRegistry = {
 		render: renderLearnList,
 		setup: () => { }
 	},
+	LearnDiagramBox: {
+		render: renderLearnSquareBoxDiagram,
+		setup: () => { }
+	},
 	popUpDone:{
 		render:renderPopupDone,
-		
 	}
 	// pick: {
 	// 	render: renderPick,
