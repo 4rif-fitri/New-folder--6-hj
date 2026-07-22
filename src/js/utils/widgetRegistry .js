@@ -6,15 +6,20 @@ import { defaultCheck } from "../logic/defaultCheck.js"
 import { updateText } from "../logic/text.js"
 import { setupClickBtn } from "../logic/neededLogic.js"
 import { renderLearnKombinasi } from "../render/Learn/Kombinasi.js"
+import { renderLearnKombinasiTerbalik } from "../render/Learn/KombinasiTerbalik.js"
 export let widgetRegistry = {
-	
-	text:{
+
+	text: {
 		render: updateText,
-		setup: () => {}
+		setup: () => { }
 	},
-	learnKombinasi:{
+	learnKombinasi: {
 		render: renderLearnKombinasi,
-		setup: () => {}
+		setup: () => { }
+	},
+	learnKombinasiTerbalik: {
+		render: renderLearnKombinasiTerbalik,
+		setup: () => { }
 	}
 	// pick: {
 	// 	render: renderPick,
