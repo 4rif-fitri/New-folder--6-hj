@@ -1,5 +1,9 @@
 @import url("./root.css");
 
+.hidden {
+	display: none;
+}
+
 body {
 	background-image: url("../images/background.png");
 	background-position: center;
@@ -18,21 +22,38 @@ body {
 main {
 	max-width: 95%;
 	width: 900px;
-	height: 90%;
-	background-color: #fff;
+	height: 95%;
+
+	display: flex;
+	flex-direction: column;
+
+	background: #fff;
 	border: var(--border-primary);
 	border-radius: 14px;
 }
 
-#main {
-	width: 100%;
-	height: calc(100% - 12rem);
+
+header {
+	height: 4rem;
+	flex-shrink: 0;
 }
 
-header,
 footer {
 	width: 100%;
-	height: 6rem;
+	height: auto;
+	min-height: 6rem;
+	flex-shrink: 0;
+
+	display: grid;
+	grid-template-rows: auto auto;
+	gap: 0.75rem;
+
+	border-top: 2px solid gainsboro;
+	padding: 0.75rem;
+}
+#main {
+	flex: 1;
+	overflow: auto;
 }
 
 header {
@@ -41,8 +62,138 @@ header {
 	border-bottom: 2px solid gainsboro;
 }
 
-footer {
+
+header {
+	width: 100%;
+	height: 4rem;
+	border-bottom: 2px solid var(--gray);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+header>div {
+	height: auto;
+	width: 100%;
 	display: grid;
-	grid-template-columns:3rem auto 3rem;
+	grid-template-columns: 5rem auto 5rem;
+	place-items: center;
+}
+
+.x {
+	text-align: center;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.bar {
+	height: 50%;
+	width: 100%;
+	background-color: #eee;
+	border-radius: 15px;
+	position: relative;
+}
+
+.barFill {
+	left: 0;
+	position: absolute;
+	border-radius: 15px;
+	height: 100%;
+	width: 0%;
+	background-color: #58CC02;
+	transition: ease-out 0.5s;
+}
+
+.dialogContainer {
+	padding: 0.5rem;
 	border-top: 2px solid gainsboro;
+	border-bottom: 2px solid gainsboro;
+	width: 100%;
+	height: 100px;
+	display: grid;
+	grid-template-columns: 6rem auto;
+}
+
+.icon {
+	background-image: url("../images/char.png");
+	background-size: cover;
+	background-position: center;
+	border-radius: 50%;
+	width: 100%;
+	height: 100%;
+}
+
+.dialog {
+	flex: 1;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.barContainer {
+	width: 100%;
+	height: 100%;
+}
+
+.text-bar {
+	text-align: center;
+}
+.btnContainer{
+	height: max-content;
+	gap: 0.5rem;
+}
+.btnContinue {
+	width: 100%;
+	padding: 0.5rem;
+}
+
+.btnBack {
+	width: 100%;
+	height: 3rem;
+	background-color: var(--color-yellow);
+	color: #fff;
+	border: 4px solid var(--color-yellow-dark);
+
+	box-shadow: 0 6px 0 var(--color-yellow-dark), inset 0 1px 0 var(--color-yellow-dark);
+}
+
+.btnContinue,
+.btnCheck,
+.btnNext {
+	width: 100%;
+	height: 3rem;
+	background-color: #58CC02;
+	color: #fff;
+	border: 4px solid #58CC02;
+
+	box-shadow: 0 6px 0 #58A700, inset 0 1px 0 rgba(88, 167, 0, .8);
+}
+
+.btnContinue:hover,
+.btnCheck:hover,
+.btnNext:hover {
+	transform: translateY(1px);
+	box-shadow: 0 5px 0 #58A700;
+}
+
+.btnContinue:active,
+.btnCheck:active,
+.btnNext:active {
+	transform: translateY(5px);
+	box-shadow: 0 1px 0 #58A700;
+}
+
+.betul {
+	background-color: var(--color-primary-light);
+}
+
+.textBetul {
+	color: var(--color-primary-deep);
+}
+
+.grid-2 {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+
 }
