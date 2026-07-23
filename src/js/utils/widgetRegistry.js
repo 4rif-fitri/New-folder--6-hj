@@ -26,6 +26,7 @@ import { renderBaki } from "../render/Baki.js"
 import { renderGabung } from "../render/Gabung.js"
 import { renderSum } from "../render/Sum.js"
 import { renderSummery } from "../render/Summery.js"
+import { renderSquareBoxDiagram } from "../render/SquareBoxDiagram.js"
 
 export let widgetRegistry = {
 
@@ -159,20 +160,22 @@ export let widgetRegistry = {
 			})
 		},
 	},
-	// latihanBoxDiagram: {
-	// 	render: renderBoxDiagram,
-	// 	setup: setupClickBtn,
-	// 	check: defaultCheck,
-	// 	afterCorrect(lastElement, numberPicked, currentData) {
-	// 		updateContent(lastElement.querySelector(".dialog p"), `${currentData.content.numberOfBox} perlukan ${currentData.answer} untuk jadi 10`)
-	// 		let grid = document.querySelector(".grid") 
-	// 		let addBox = Array.from({ length: currentData.answer }).map(() => {
-	// 			let box = document.createElement("div")
-	// 			box.classList.add("box","pop")
-	// 			grid.appendChild(box)
-	// 		})
-	// 	},
-	// },
+	SquareBoxDiagram: {
+		render: renderSquareBoxDiagram,
+		setup: setupClickBtn,
+		check: defaultCheck,
+		afterCorrect(numberPicked, currentData) {
+			updateContent(document.querySelector(".dialog p"), `${currentData.content.numberOfBox} perlukan ${currentData.answer} untuk jadi 10`)
+			let content = document.querySelector(".content")
+			Array.from({ length: currentData.answer }).map(() =>{
+				let div = document.createElement("div")
+				div.classList.add("box","pop")
+				content.appendChild(div)
+			})
+
+		},
+	},
+
 	// trueFalse:{
 	// 	render: renderTrueFalse,
 	// 	setup: setupClickBtn,

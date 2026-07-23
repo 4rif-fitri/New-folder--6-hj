@@ -8,11 +8,11 @@ export function renderSummery(data){
 			<h1 class="eqn text-center tempatKosong"></h1>
 		</div>
 
-			<div class="options grid-3">
-				${data.options.map(option => `
-					<div class="option soft-box btnAns">
-						<h2>${option}</h2>
-					</div>`).join('')}
-			</div>
+		<div class="options grid-3">
+			${data.options.map(option => `
+				<div class="option soft-box btnAns">
+					<h2>${option}</h2>
+				</div>`).join('')}
+		</div>
 	`
 }
