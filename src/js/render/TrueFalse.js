@@ -1,11 +1,11 @@
 export function renderTrueFalse(data){
 	return `
 		<div class="content grid-5">
-			<h1>5</h1>
+			<h1>${data.content.nums[0]}</h1>
 			<h1>+</h1>
-			<h1>5</h1>
+			<h1>${data.content.nums[1]}</h1>
 			<h1>=</h1>
-			<h1>10</h1>
+			<h1>${data.content.nums[2]}</h1>
 		</div>
 
 		<div class="options grid-2">

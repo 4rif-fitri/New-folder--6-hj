@@ -27,6 +27,7 @@ import { renderGabung } from "../render/Gabung.js"
 import { renderSum } from "../render/Sum.js"
 import { renderSummery } from "../render/Summery.js"
 import { renderSquareBoxDiagram } from "../render/SquareBoxDiagram.js"
+import { renderTrueFalse } from "../render/TrueFalse.js"
 
 export let widgetRegistry = {
 
@@ -176,15 +177,14 @@ export let widgetRegistry = {
 		},
 	},
 
-	// trueFalse:{
-	// 	render: renderTrueFalse,
-	// 	setup: setupClickBtn,
-	// 	check: defaultCheck,
-	// 	afterCorrect: () => {},
-	// },
+	TrueFalse:{
+		render: renderTrueFalse,
+		setup: setupClickBtn,
+		check: defaultCheck,
+		afterCorrect: () => {},
+	},
 	// dragnDrop1:{
 	// 	render: renderDragDrop1,
 	// 	setup: setupDragDrop1,
-
 	// }
 }
