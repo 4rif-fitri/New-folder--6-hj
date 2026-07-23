@@ -18,6 +18,8 @@ import { renderLearnBaki } from "../render/Learn/teknik/Baki.js"
 import { renderLearnNeeded } from "../render/Learn/teknik/Needed.js"
 import { renderLearnSum } from "../render/Learn/teknik/Sum.js"
 import { renderLearnSummery } from "../render/Learn/teknik/Summery.js"
+import { updateContent } from "./helper.js"
+import { renderKombinasiTerbalik } from "../render/KombinasiTerbalik.js"
 
 export let widgetRegistry = {
 
@@ -126,24 +128,32 @@ export let widgetRegistry = {
 	// 	},
 
 	// },
-	// latihanPecah: {
-	// 	render: renderKombinasi,
-	// 	setup: setupClickBtn,
-	// 	check: defaultCheck,
-	// 	afterCorrect(lastElement, numberPicked, currentData) {
-	// 		updateContent(lastElement.querySelector(".dialog p"), `${currentData.content.whole} boleh dipecahkan kepada ${currentData.content.part[0]} dan ${numberPicked}`)
-	// 		updateContent(lastElement.querySelectorAll(".circuleAns")[0], `${numberPicked}`)
-	// 	},
-	// },
-	// latihanPecahTerbalik: {
-	// 	render: renderPecahTerbalik,
-	// 	setup: setupClickBtn,
-	// 	check: defaultCheck,
-	// 	afterCorrect(lastElement, numberPicked, currentData) {
-	// 		updateContent(lastElement.querySelector(".dialog p"), `Jumlah ${currentData.content.part[0]} tambah ${currentData.content.part[1]} ialah ${currentData.answer}`)
-	// 		updateContent(lastElement.querySelectorAll(".circuleAns")[0], `${numberPicked}`)
-	// 	},
-	// },
+	latihanPecah: {
+		render: renderKombinasi,
+		setup: setupClickBtn,
+		check: defaultCheck,
+		afterCorrect(numberPicked, currentData) {
+			updateContent(document.querySelector(".dialog p"), `${currentData.content.whole} boleh dipecahkan kepada ${currentData.content.part[0]} dan ${numberPicked}`)
+			let answerElements = document.querySelectorAll(".circula-ans");
+			if (currentData.content.part[0] === "") {
+				updateContent(answerElements[0], numberPicked);
+			}
+			if (currentData.content.part[1] === "") {
+				updateContent(answerElements[1], numberPicked);
+			}
+		}
+	},
+	latihanPecahTerbalik: {
+		render: renderKombinasiTerbalik,
+		setup: setupClickBtn,
+		check: defaultCheck,
+		afterCorrect(numberPicked, currentData) {
+			updateContent(document.querySelector(".dialog p"), `Jumlah ${currentData.content.part[0]} dan ${currentData.content.part[1]} ialah ${currentData.answer}`)
+			document.querySelectorAll(".target").forEach(target => {
+				target.textContent = numberPicked 
+			})
+		},
+	},
 	// latihanBoxDiagram: {
 	// 	render: renderBoxDiagram,
 	// 	setup: setupClickBtn,

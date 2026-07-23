@@ -1,8 +1,8 @@
 import { renderPopupDone } from "../render/components/PopupDone.js";
 
-// export function updateContent(element,text){
-// 	element.textContent = text
-// }
+export function updateContent(element,text){
+	element.textContent = text
+}
 
 // export function defaultCheck(picked, data){
 // 	return picked == data.answer;
@@ -271,40 +271,44 @@ import { renderPopupDone } from "../render/components/PopupDone.js";
 // 	`
 // }
 
-// export function showCorrect(ui) {
-// 	ui.btnContinue.classList.remove("green", "red");
-
-// 	ui.textFooter.classList.remove("hidden")
-// 	ui.textFooter.classList.add("textGreen")
-// 	ui.textFooter.textContent = "BETUL"
+export function showCorrect(ui) {
+	ui.btnCheck.classList.add("hidden")
+	ui.btnContinue.classList.remove("hidden")
 	
-// 	ui.footer.classList.add("soft-green")
-// 	ui.btnContinue.classList.remove("hidden")
-// 	ui.btnCheck.classList.add("hidden")
-// }
+	ui.footer.classList.add("soft-betul")
+	ui.btnContinue.classList.add("betul")
+	ui.textFooter.classList.remove("hidden")
+	ui.textFooter.classList.add("textBetul")
+	ui.textFooter.textContent = "BETUL"
 
-// export function showWrong(ui) {
-// 	ui.btnContinue.classList.remove("green", "red");
+}
 
-// 	ui.btnContinue.classList.remove("hidden")
-// 	ui.btnContinue.classList.add("red")
+export function showWrong(ui) {
+	ui.btnCheck.classList.add("hidden")
+	ui.btnContinue.classList.remove("hidden")
 
-// 	ui.textFooter.classList.remove("hidden")
-// 	ui.textFooter.classList.add("textRed")
-// 	ui.textFooter.classList.remove("textGreen")
-// 	ui.textFooter.textContent = "SALAH"
-	
-// 	ui.footer.classList.add("soft-red")
-	
-// 	ui.btnCheck.classList.add("hidden")
-// }
+	ui.btnContinue.textContent = "RETRY"
 
-// export function resetContentFooter(ui) {
-// 	ui.textFooter.classList.toggle("hidden")
-// 	ui.btnContinue.classList.toggle("hidden")
-// 	ui.btnCheck.classList.toggle("hidden")
-// 	ui.footer.classList.remove("soft-green", "soft-red")
-// }
+	ui.footer.classList.add("soft-salah")
+	ui.btnContinue.classList.add("salah")
+	ui.textFooter.classList.remove("hidden")
+	ui.textFooter.classList.add("textSalah")
+	ui.textFooter.textContent = "SALAH"
+
+}
+
+export function resetContentFooter(ui) {
+	ui.btnCheck.classList.remove("hidden")
+	ui.btnContinue.classList.add("hidden")
+
+	ui.btnContinue.textContent = "CONTINUE"
+
+	ui.footer.classList.remove("soft-salah", "soft-betul")
+	ui.btnContinue.classList.remove("salah","betul")
+	ui.textFooter.classList.add("hidden")
+	ui.textFooter.classList.remove("textSalah","textBetul")
+
+}
 
 // export function PopUpDone(){
 // 	let div = document.createElement("div")
@@ -327,7 +331,7 @@ import { renderPopupDone } from "../render/components/PopupDone.js";
 
 // }
 
-export function showPopUpDone(data){
+export function showPopUpDone(){
 	
 	if (!document.querySelector(".containerPopUp")) {
 

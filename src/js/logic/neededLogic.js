@@ -1,16 +1,10 @@
-export function setupClickBtn(callback, canPick = () => {}) {
-	let elementPicked = null;
-	const allElements = document.querySelectorAll(".content");
-	const lastElement = allElements[allElements.length - 1];
-	
-	
-	let btnAns = lastElement.querySelectorAll(".option")
-	console.log(btnAns);
+export function setupClickBtn(callback, canPick) {
+	let elementPicked
+	let btnAns = document.querySelectorAll(".option")
 
 	btnAns.forEach(b =>{
 		b.addEventListener("click", e => {
 			if (!canPick()) return;
-			console.log("click");
 			
 			if (elementPicked == e.target) {
 				e.target.classList.remove("higlight");
