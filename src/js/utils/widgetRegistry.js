@@ -20,6 +20,12 @@ import { renderLearnSum } from "../render/Learn/teknik/Sum.js"
 import { renderLearnSummery } from "../render/Learn/teknik/Summery.js"
 import { updateContent } from "./helper.js"
 import { renderKombinasiTerbalik } from "../render/KombinasiTerbalik.js"
+import { renderNeeded } from "../render/Needed.js"
+import { renderPecah } from "../render/Pecah.js"
+import { renderBaki } from "../render/Baki.js"
+import { renderGabung } from "../render/Gabung.js"
+import { renderSum } from "../render/Sum.js"
+import { renderSummery } from "../render/Summery.js"
 
 export let widgetRegistry = {
 
@@ -43,7 +49,7 @@ export let widgetRegistry = {
 		render: renderLearnSquareBoxDiagram,
 		setup: () => { }
 	},
-	LearnPick:{
+	LearnPick: {
 		render: renderLearnPick,
 	},
 	LearnNeeded: {
@@ -65,69 +71,68 @@ export let widgetRegistry = {
 		render: renderLearnSummery,
 	},
 	
-	// pick: {
-	// 	render: renderPick,
-	// 	setup: setupPick,
-	// 	check: defaultCheck,
-	// },
-	// needed: {
-	// 	render: renderNeeded,
-	// 	setup: setupClickBtn,
-	// 	check: defaultCheck,
-	// 	afterCorrect(lastElement, numberPicked, currentData) {
-	// 		updateContent(lastElement.querySelector(".dialog p"), `${currentData.content.options[0]} perlukan ${currentData.content.pelengkap} untuk jadi 10`)
-	// 	},
-	// },
-	// pecah: {
-	// 	render: renderPecah,
-	// 	setup: setupClickBtn,
-	// 	check: defaultCheck,
-	// 	afterCorrect(lastElement, numberPicked, currentData) {
-	// 		updateContent(lastElement.querySelector(".dialog p"), `${currentData.content.pelengkap} itu kita akan ambil dari ${currentData.answer}`)
-	// 		updateContent(lastElement.querySelectorAll(".eqn")[1], numberPicked)
-	// 	},
+	Pick: {
+		render: renderPick,
+		setup: setupPick,
+		check: defaultCheck,
+		afterCorrect(numberPicked, currentData) {
+			updateContent(document.querySelector(".dialog p"), `${currentData.content.nums[0]} ialah nombor paling besar`)
+		},
+	},
+	Needed: {
+		render: renderNeeded,
+		setup: setupClickBtn,
+		check: defaultCheck,
+		afterCorrect(numberPicked, currentData) {
+			updateContent(document.querySelector(".dialog p"), `${currentData.content.nums[0]} perlukan ${currentData.content.pelengkap} untuk jadi 10`)
+			updateContent(document.querySelector(".tempatKosong"), `${currentData.content.pelengkap}`)
+		},
+	},
+	Pecah: {
+		render: renderPecah,
+		setup: setupClickBtn,
+		check: defaultCheck,
+		afterCorrect(numberPicked, currentData) {
+			updateContent(document.querySelector(".dialog p"), `${currentData.content.pelengkap} itu kita akan ambil dari ${currentData.content.nums[1]}`)
+			updateContent(document.querySelector(".tempatKosong"), `${currentData.content.nums[1]}`)
+		}
+	},
+	Baki: {
+		render: renderBaki,
+		setup: setupClickBtn,
+		check: defaultCheck,
+		afterCorrect(numberPicked, currentData) {
+			updateContent(document.querySelector(".dialog p"), `${currentData.content.nums[1]} akan dipecahkan kepada ${currentData.content.pelengkap} dan ${currentData.content.baki}`)
+			updateContent(document.querySelector(".tempatKosong"), `${currentData.content.baki}`)
+		},
+	},
+	Gabung: {
+		render: renderGabung,
+		setup: setupClickBtn,
+		check: defaultCheck,
+		afterCorrect(numberPicked, currentData) {
+			updateContent(document.querySelector(".dialog p"), `${currentData.content.nums[0]} tambah ${currentData.content.pelengkap} akan dapat ${currentData.content.nums[0] + currentData.content.pelengkap}`)
+			updateContent(document.querySelector(".hasil"), `${currentData.content.nums[0] + currentData.content.pelengkap}`)
+		},
+	},
+	Sum: {
+		render: renderSum,
+		setup: setupClickBtn,
+		check: defaultCheck,
+		afterCorrect(numberPicked, currentData) {
+			updateContent(document.querySelector(".dialog p"), `10 tambah ${currentData.content.baki} akan dapat ${currentData.content.baki + currentData.content.baki}`)
+			updateContent(document.querySelector(".tempatKosong"), `=${currentData.content.nums[0] + currentData.content.nums[1]}`)
+		},
+	},
+	Summery: {
+		render: renderSummery,
+		setup: setupClickBtn,
+		check: defaultCheck,
+		afterCorrect(numberPicked, currentData) {
+			updateContent(document.querySelector(".tempatKosong"), `${currentData.content.nums[0] + currentData.content.nums[1]}`)
+		},
 
-	// },
-	// baki: {
-	// 	render: renderBaki,
-	// 	setup: setupClickBtn,
-	// 	check: defaultCheck,
-	// 	afterCorrect(lastElement, numberPicked, currentData) {
-	// 		updateContent(lastElement.querySelector(".dialog p"), `${currentData.content.options[1]} akan dipecahkan kepada ${currentData.content.pelengkap} dan ${currentData.answer}`)
-	// 		updateContent(lastElement.querySelectorAll(".pecah")[1], numberPicked)
-	// 	},
-
-	// },
-	// gabung: {
-	// 	render: renderGabung,
-	// 	setup: setupClickBtn,
-	// 	check: defaultCheck,
-	// 	afterCorrect(lastElement, numberPicked, currentData) {
-	// 		updateContent(lastElement.querySelector(".dialog p"), `${currentData.content.options[0]} tambah ${currentData.content.pelengkap} akan dapat ${currentData.answer}`)
-	// 		updateContent(lastElement.querySelectorAll(".hasil")[0], numberPicked)
-	// 	},
-
-	// },
-	// sum: {
-	// 	render: renderSum,
-	// 	setup: setupClickBtn,
-	// 	check: defaultCheck,
-	// 	afterCorrect(lastElement, numberPicked, currentData) {
-	// 		updateContent(lastElement.querySelector(".dialog p"), `${currentData.content.options[0] + currentData.content.pelengkap} tambah ${currentData.content.options[1] - currentData.content.pelengkap} akan dapat ${currentData.answer}`)
-	// 		updateContent(lastElement.querySelectorAll(".jumlah")[0], `=${numberPicked}`)
-	// 	},
-
-	// },
-	// summery: {
-	// 	render: renderSummery,
-	// 	setup: setupClickBtn,
-	// 	check: defaultCheck,
-	// 	afterCorrect(lastElement, numberPicked, currentData) {
-	// 		updateContent(lastElement.querySelector(".dialog p"), `${currentData.content.options[0]} tambah ${currentData.content.options[1]} akan dapat ${currentData.answer}`)
-	// 		updateContent(lastElement.querySelectorAll(".jumlahAkhir")[0], `${numberPicked}`)
-	// 	},
-
-	// },
+	},
 	latihanPecah: {
 		render: renderKombinasi,
 		setup: setupClickBtn,
@@ -150,7 +155,7 @@ export let widgetRegistry = {
 		afterCorrect(numberPicked, currentData) {
 			updateContent(document.querySelector(".dialog p"), `Jumlah ${currentData.content.part[0]} dan ${currentData.content.part[1]} ialah ${currentData.answer}`)
 			document.querySelectorAll(".target").forEach(target => {
-				target.textContent = numberPicked 
+				target.textContent = numberPicked
 			})
 		},
 	},
