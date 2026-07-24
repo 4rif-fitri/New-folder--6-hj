@@ -492,7 +492,10 @@ a {
 	transform: translateY(5px);
 	box-shadow: 0 1px 0 #c8ccd2;
 }
-
+.grid-1 {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr) !important;
+}
 .grid-2 {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr) !important;
