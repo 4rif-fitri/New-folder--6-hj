@@ -170,9 +170,9 @@ header>div {
 .btnNext {
 	width: 100%;
 	height: 3rem;
-	background-color: #58CC02;
+	background-color: #58CC02 !important;
 	color: #fff;
-	border: 4px solid #58CC02;
+	border: 4px solid #58CC02 !important;
 
 	box-shadow: 0 6px 0 #58A700, inset 0 1px 0 rgba(88, 167, 0, .8);
 }
@@ -201,14 +201,14 @@ header>div {
 .btnCheck:hover,
 .btnNext:hover {
 	transform: translateY(1px);
-	box-shadow: 0 5px 0 #58A700;
+	box-shadow: 0 5px 0 #58A700 !important;
 }
 
 .btnContinue:active,
 .btnCheck:active,
 .btnNext:active {
 	transform: translateY(5px);
-	box-shadow: 0 1px 0 #58A700;
+	box-shadow: 0 1px 0 #58A700 !important;
 }
 
 .betul {
